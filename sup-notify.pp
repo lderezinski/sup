@@ -77,8 +77,3 @@ file { "toolbox":
   target => "/root/support-toolbox",
   require => Exec["download-toolbox"],
 }
-
-exec { "root-profile":
-  command => "/opt/local/bin/mget /andrew.hill/stor/sup-notify-profile >/root/.profile",
-  require => Exec["install-manta"],
-}
