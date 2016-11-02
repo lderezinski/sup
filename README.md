@@ -17,3 +17,5 @@ export MANTA_USER=<Manta user ID>
 mget /andrew.hill/stor/sup-notify-profile >/root/.profile
 rm -f /root/.ssh/id_rsa
 ```
+
+Before testing sebastian, it will be necessary to change one line in the config file in order to locate the templates. I leave this as an exercise to the reader, partly because I haven't had a chance to figure out the best way of automating this, short of pulling a new file from Manta. Or maybe a symlink might be the simplest way.
