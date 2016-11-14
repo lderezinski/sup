@@ -66,11 +66,6 @@ exec { "link-node":
   command => "/opt/local/bin/mkdir -p /root/support-toolbox/node_modules/sdc/build/node/bin && /opt/local/bin/ln -s /opt/local/bin/node /root/support-toolbox/node_modules/sdc/build/node/bin/node",
 }
 
-exec { "sdc-config":
-  require => Exec["install-toolbox"],
-  command => "/opt/local/bin/curl https://raw.githubusercontent.com/andrewh1978/sup-notify/master/config.json >/root/support-toolbox/node_modules/sdc/etc/config.json",
-}
-
 file { "toolbox":
   path => "/root/toolbox",
   ensure => "link",
