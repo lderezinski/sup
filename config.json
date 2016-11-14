@@ -1,5 +1,0 @@
-{
-	"ufds_domain": "10.0.96.21",
-	"ufds_ldap_root_dn": "cn=root",
-	"ufds_ldap_root_pw": "secret"
-}
