@@ -19,7 +19,7 @@ package { "net-snmp":
 }
 
 exec { "mib-netapp":
-  command => "/opt/local/bin/curl 'https://resources.manageengine.com/viewFile.do?fileId=49000007707629&forumGroupId=49000000002007' >/opt/local/share/snmp/mibs/netapp.mib",
+  command => "/opt/local/bin/curl 'https://resources.manageengine.com/viewFile.do?fileId=49000007707629&forumGroupId=49000000002007' >/opt/local/share/snmp/mibs/NETAPP-MIB.txt",
   require => Package["net-snmp"],
 }
 
