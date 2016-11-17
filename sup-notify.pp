@@ -53,8 +53,7 @@ exec { "install-sebastian":
 
 exec { "install-sebastian-templates":
   require => Exec["known_hosts"],
-#  command => "/opt/local/bin/git clone git@github.com:joyent/triton-cloud-notification-templates.git",
-  command => "/opt/local/bin/git clone git@github.com:plumtrees/triton-cloud-notification-templates",
+  command => "/opt/local/bin/git clone git@github.com:joyent/triton-cloud-notification-templates.git",
   cwd => "/opt/local/lib",
 }
 
