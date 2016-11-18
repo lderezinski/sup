@@ -59,25 +59,25 @@ exec { "install-sebastian-templates":
 
 exec { "download-toolbox":
   require => Package["git"],
-  command => "/opt/local/bin/git clone git@github.com:joyent/support-toolbox.git",
+  command => "/opt/local/bin/git clone git@github.com:joyent/sup-toolbox.git",
   cwd => "/root",
 }
 
 exec { "install-toolbox":
   require => [ Exec["download-toolbox"] ],
   command => "/opt/local/bin/npm install",
-  cwd => "/root/support-toolbox",
+  cwd => "/root/sup-toolbox",
   environment => "HOME=/root",
 }
 
 exec { "link-node":
   require => Exec["download-toolbox"],
-  command => "/opt/local/bin/mkdir -p /root/support-toolbox/node_modules/sdc/build/node/bin && /opt/local/bin/ln -s /opt/local/bin/node /root/support-toolbox/node_modules/sdc/build/node/bin/node",
+  command => "/opt/local/bin/mkdir -p /root/sup-toolbox/node_modules/sdc/build/node/bin && /opt/local/bin/ln -s /opt/local/bin/node /root/sup-toolbox/node_modules/sdc/build/node/bin/node",
 }
 
 file { "toolbox":
   path => "/root/toolbox",
   ensure => "link",
-  target => "/root/support-toolbox",
+  target => "/root/sup-toolbox",
   require => Exec["download-toolbox"],
 }
