@@ -12,17 +12,15 @@ To deploy:
 chmod 600 /root/.ssh/id_rsa
 echo nameserver 8.8.8.8 >/etc/resolv.conf
 pkgin -y in ruby21-puppet
-puppet apply <(curl https://raw.githubusercontent.com/andrewh1978/sup-notify/master/sup-notify.pp)
+puppet apply <(curl https://raw.githubusercontent.com/andrewh1978/sup/master/sup.pp)
 export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/id_rsa | cut -b 10-56)
 export MANTA_URL=https://us-east.manta.joyent.com
 export MANTA_USER=<Manta user ID>
-mget /andrew.hill/stor/sup-notify/profile >/root/.profile
-mget /andrew.hill/stor/sup-notify/sdc-config.json >/root/toolbox/node_modules/sdc/etc/config.json
+mget /andrew.hill/stor/sup/profile >/root/.profile
+mget /andrew.hill/stor/sup/sdc-config.json >/root/toolbox/node_modules/sdc/etc/config.json
 rm -f /root/.ssh/id_rsa
 ```
 
 TODO:
-
-Rename sup-notify -> sup
 
 Rename sebastian -> sup-notify

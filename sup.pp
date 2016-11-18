@@ -1,5 +1,5 @@
 exec { "bash_profile":
-  command => "/opt/local/bin/curl https://raw.githubusercontent.com/andrewh1978/sup-notify/master/.bash_profile >/root/.bash_profile",
+  command => "/opt/local/bin/curl https://raw.githubusercontent.com/andrewh1978/sup/master/.bash_profile >/root/.bash_profile",
 }
 
 package { "gcc49":
