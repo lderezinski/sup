@@ -54,17 +54,35 @@ exec { "install-sebastian":
 exec { "install-sebastian-templates":
   require => Exec["known_hosts"],
   command => "/opt/local/bin/git clone git@github.com:joyent/triton-cloud-notification-templates.git",
+  unless  => "/usr/bin/test -d /opt/local/lib/triton-cloud-notification-templates",
   cwd => "/opt/local/lib",
+}
+
+exec { "update-sebastian-templates":
+  require => Exec["known_hosts"],
+  command => "/opt/local/bin/git pull",
+  unless  => "/usr/bin/test ! -d /opt/local/lib/triton-cloud-notification-templates",
+  cwd => "/opt/local/lib/triton-cloud-notification-templates",
 }
 
 exec { "download-toolbox":
   require => Package["git"],
   command => "/opt/local/bin/git clone git@github.com:joyent/sup-toolbox.git",
+  unless => "/usr/bin/test -d /root/sup-toolbox",
   cwd => "/root",
+  notify => Exec["install-toolbox"],
+}
+
+exec { "update-toolbox":
+  require => Package["git"],
+  command => "/opt/local/bin/git pull",
+  unless => "/usr/bin/test ! -d /root/sup-toolbox",
+  cwd => "/root/sup-toolbox",
+  notify => Exec["install-toolbox"],
 }
 
 exec { "install-toolbox":
-  require => [ Exec["download-toolbox"] ],
+  refreshonly => true,
   command => "/opt/local/bin/npm install",
   cwd => "/root/sup-toolbox",
   environment => "HOME=/root",
