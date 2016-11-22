@@ -31,7 +31,7 @@ exec { "remove-nodejs":
 package { "nodejs":
   ensure => "0.10.48",
   require => Exec["remove-nodejs"],
-  before => [ Exec["install-manta"], Exec["install-sebastian"], Exec["install-toolbox"] ],
+  before => [ Exec["install-manta"], Exec["install-sup-notify"], Exec["install-toolbox"] ],
 }
 
 exec { "known_hosts":
@@ -44,21 +44,21 @@ exec { "install-manta":
   unless  => "/usr/bin/test -f /opt/local/bin/mget",
 }
 
-exec { "install-sebastian":
-  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
-  command => "/opt/local/bin/npm install -g git+ssh://git@github.com:joyent/node-sebastian.git",
-  unless  => "/usr/bin/test -f /opt/local/bin/sebastian",
+exec { "install-sup-notify":
+  require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
+  command => "/opt/local/bin/npm install -g git+ssh://git@github.com/joyent/sup-notify.git",
+  unless  => "/usr/bin/test -f /opt/local/bin/sup-notify",
   environment => "HOME=/root",
 }
 
-exec { "install-sebastian-templates":
+exec { "install-sup-notify-templates":
   require => Exec["known_hosts"],
   command => "/opt/local/bin/git clone git@github.com:joyent/triton-cloud-notification-templates.git",
   unless  => "/usr/bin/test -d /opt/local/lib/triton-cloud-notification-templates",
   cwd => "/opt/local/lib",
 }
 
-exec { "update-sebastian-templates":
+exec { "update-sup-notify-templates":
   require => Exec["known_hosts"],
   command => "/opt/local/bin/git pull",
   unless  => "/usr/bin/test ! -d /opt/local/lib/triton-cloud-notification-templates",

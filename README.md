@@ -20,7 +20,3 @@ mget /andrew.hill/stor/sup/profile >/root/.profile
 mget /andrew.hill/stor/sup/sdc-config.json >/root/toolbox/node_modules/sdc/etc/config.json
 rm -f /root/.ssh/id_rsa
 ```
-
-TODO:
-
-Rename sebastian -> sup-notify
