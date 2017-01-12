@@ -18,5 +18,8 @@ export MANTA_URL=https://us-east.manta.joyent.com
 export MANTA_USER=<Manta user ID>
 mget /andrew.hill/stor/sup/profile >/root/.profile
 mget /andrew.hill/stor/sup/sdc-config.json >/root/toolbox/node_modules/sdc/etc/config.json
+mget /andrew.hill/stor/sup/<DC>.json >/opt/local/lib/node_modules/sup-notify/etc/dc.json
 rm -f /root/.ssh/id_rsa
 ```
+
+For `<DC>.json`, user either `spc.json` or `jpc.json`.
