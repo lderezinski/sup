@@ -17,8 +17,8 @@ puppet apply <(curl https://raw.githubusercontent.com/andrewh1978/sup/master/sup
 export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/id_rsa | cut -b 10-56)
 export MANTA_URL=https://us-east.manta.joyent.com
 export MANTA_USER=<Manta user ID>
-mget /andrew.hill/stor/sup/profile.$DC >/root/.profile
-mget /andrew.hill/stor/sup/sdc-config.json >/root/toolbox/node_modules/sdc/etc/config.json
-mget /andrew.hill/stor/sup/$DC.json >/opt/local/lib/node_modules/sup-notify/etc/dc.json
+mget /joyentsup/stor/sup/profile.$DC >/root/.profile
+mget /joyentsup/stor/sup/sdc-config.json >/root/toolbox/node_modules/sdc/etc/config.json
+mget /joyentsup/stor/sup/$DC.json >/opt/local/lib/node_modules/sup-notify/etc/dc.json
 rm -f /root/.ssh/id_rsa
 ```
