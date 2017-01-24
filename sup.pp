@@ -4,6 +4,7 @@ exec { "bash_profile":
 
 package { "gcc49":
   ensure => installed,
+  before => Package["nodejs"],
 }
 
 package { "gmake":
