@@ -15,15 +15,6 @@ package { "git":
   ensure => installed,
 }
 
-package { "net-snmp":
-  ensure => installed,
-}
-
-exec { "mib-netapp":
-  command => "/opt/local/bin/curl 'https://resources.manageengine.com/viewFile.do?fileId=49000007707629&forumGroupId=49000000002007' >/opt/local/share/snmp/mibs/NETAPP-MIB.txt",
-  require => Package["net-snmp"],
-}
-
 exec { "remove-nodejs":
   command => "/opt/local/bin/pkgin -y rm nodejs",
   unless => "/usr/bin/test ! -f /opt/local/bin/node || /opt/local/bin/node --version | grep -q v0.10.48",
