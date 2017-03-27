@@ -30,6 +30,10 @@ package { "p5-libwww":
   ensure => installed,
 }
 
+package { "p5-JSON":
+  ensure => installed,
+}
+
 exec { "known_hosts":
   command => "/usr/bin/ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts",
   unless => "/usr/bin/test -f /root/.ssh/known_hosts",
