@@ -9,6 +9,7 @@ package { "gcc49":
 
 package { "gmake":
   ensure => installed,
+  before => Package["nodejs"],
 }
 
 package { "git":
