@@ -9,6 +9,7 @@ package { "gcc49":
 
 package { "gmake":
   ensure => installed,
+  before => Package["nodejs"],
 }
 
 package { "git":
@@ -42,6 +43,7 @@ exec { "known_hosts":
 exec { "install-manta":
   command => "/opt/local/bin/npm install -g manta",
   unless  => "/usr/bin/test -f /opt/local/bin/mget",
+  environment => "HOME=/root"
 }
 
 exec { "install-sup-notify":
