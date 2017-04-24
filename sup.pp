@@ -2,6 +2,15 @@ exec { "bash_profile":
   command => "/opt/local/bin/curl https://raw.githubusercontent.com/andrewh1978/sup/master/.bash_profile >/root/.bash_profile",
 }
 
+exec { "/opt/local/etc/postfix/main.cf":
+  command => "/opt/local/bin/curl https://raw.githubusercontent.com/andrewh1978/sup/master/main.cf >/opt/local/etc/postfix/main.cf",
+  before => Service{"postfix"},
+}
+
+service { "postfix":
+  ensure => running,
+}
+
 package { "gcc49":
   ensure => installed,
   before => Package["nodejs"],
