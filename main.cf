@@ -1,0 +1,5 @@
+mydomain = joyent.com
+myorigin = joyent.com
+relayhost = $mydomain
+inet_interfaces = loopback-only
+mydestination =
