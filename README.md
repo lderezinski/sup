@@ -20,5 +20,6 @@ export MANTA_USER=<Manta user ID>
 mget /joyentsup/stor/sup/profile.$DC >/root/.profile
 mget /joyentsup/stor/sup/sdc-config.json >/root/toolbox/node_modules/sdc/etc/config.json
 mget /joyentsup/stor/sup/$DC.json >/opt/local/lib/node_modules/sup-notify/etc/dc.json
+mget /joyentsup/stor/sup/im-notices.json >/opt/local/lib/node_modules/im-notices/etc/config.json
 rm -f /root/.ssh/id_rsa
 ```

@@ -33,7 +33,7 @@ exec { "remove-nodejs":
 package { "nodejs":
   ensure => "0.10.48",
   require => Exec["remove-nodejs"],
-  before => [ Exec["install-manta"], Exec["install-sup-notify"], Exec["install-toolbox"] ],
+  before => [ Exec["install-manta"], Exec["install-sup-notify"], Exec["install-toolbox"], Exec["install-im-notices"] ],
 }
 
 package { "p5-libwww":
@@ -96,6 +96,13 @@ exec { "install-toolbox":
   refreshonly => true,
   command => "/opt/local/bin/npm install",
   cwd => "/root/sup-toolbox",
+  environment => "HOME=/root",
+}
+
+exec { "install-im-notices":
+  require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
+  command => "/opt/local/bin/npm install -g git+ssh://git@github.com/joyent/sup-im-notices.git",
+  unless  => "/usr/bin/test -f /opt/local/bin/im-notices",
   environment => "HOME=/root",
 }
 
