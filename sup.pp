@@ -88,7 +88,7 @@ exec { "install-net-http-spore":
 }
 
 exec { "install-jira-client-rest":
-  command => "/opt/local/bin/curl http://search.cpan.org/CPAN/authors/id/G/GP/GPHAT/JIRA-Client-REST-0.06.tar.gz | tar xf - && cd JIRA-Client-REST-0.06 && /opt/local/bin/perl Makefile.PL && /opt/local/bin/make install",
+  command => "/opt/local/bin/curl http://search.cpan.org/CPAN/authors/id/G/GP/GPHAT/JIRA-Client-REST-0.06.tar.gz | /opt/local/bin/tar xf - && cd JIRA-Client-REST-0.06 && /opt/local/bin/perl Makefile.PL && /opt/local/bin/make install",
   require => Package["gmake"],
   cwd => "/usr/local/src",
 }
