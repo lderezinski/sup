@@ -106,6 +106,12 @@ exec { "install-im-notices":
   environment => "HOME=/root",
 }
 
+exec { "install-rest-client":
+  require => Package["gmake"],
+  command => "/opt/local/bin/curl http://www.cpan.org/authors/id/K/KK/KKANE/REST-Client-273.tar.gz | /opt/local/bin/tar xzf - && cd REST-Client-273 && /opt/local/bin/perl Makefile.PL && /opt/local/bin/make install",
+  cwd => "/usr/local/src",
+}
+
 exec { "link-node":
   require => Exec["download-toolbox"],
   command => "/opt/local/bin/mkdir -p /root/sup-toolbox/node_modules/sdc/build/node/bin && /opt/local/bin/ln -s /opt/local/bin/node /root/sup-toolbox/node_modules/sdc/build/node/bin/node",
