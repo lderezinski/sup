@@ -44,6 +44,18 @@ package { "p5-JSON":
   ensure => installed,
 }
 
+package { "p5-Package-DeprecationManager":
+  ensure => installed,
+}
+
+package { "p5-IO-All":
+  ensure => installed,
+}
+
+package { "p5-MooseX-Types-URI":
+  ensure => installed,
+}
+
 exec { "known_hosts":
   command => "/usr/bin/ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts",
   unless => "/usr/bin/test -f /root/.ssh/known_hosts",
@@ -67,6 +79,18 @@ exec { "install-sup-notify-templates":
   command => "/opt/local/bin/git clone git@github.com:joyent/triton-cloud-notification-templates.git",
   unless  => "/usr/bin/test -d /opt/local/lib/triton-cloud-notification-templates",
   cwd => "/opt/local/lib",
+}
+
+exec { "install-net-http-spore":
+  command => "/opt/local/bin/curl http://search.cpan.org/CPAN/authors/id/A/AS/ASH/Net-HTTP-Spore-0.06.tar.gz | /opt/local/bin/tar xf - && cd Net-HTTP-Spore-0.06 && /opt/local/bin/perl Makefile.PL && /opt/local/bin/make install",
+  require => Package["gmake"],
+  cwd => "/usr/local/src",
+}
+
+exec { "install-jira-client-rest":
+  command => "/opt/local/bin/curl http://search.cpan.org/CPAN/authors/id/G/GP/GPHAT/JIRA-Client-REST-0.06.tar.gz | tar xf - && cd JIRA-Client-REST-0.06 && /opt/local/bin/perl Makefile.PL && /opt/local/bin/make install",
+  require => Package["gmake"],
+  cwd => "/usr/local/src",
 }
 
 exec { "update-sup-notify-templates":
