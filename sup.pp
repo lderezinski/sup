@@ -118,6 +118,13 @@ exec { "install-jira-rest":
   cwd => "/usr/local/src",
 }
 
+exec { "install-new-ufds-users":
+  require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
+  command => "/opt/local/bin/npm install -g git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
+  unless  => "/usr/bin/test -f /opt/local/bin/new-ufds-users",
+  environment => "HOME=/root",
+}
+
 exec { "link-node":
   require => Exec["download-toolbox"],
   command => "/opt/local/bin/mkdir -p /root/sup-toolbox/node_modules/sdc/build/node/bin && /opt/local/bin/ln -s /opt/local/bin/node /root/sup-toolbox/node_modules/sdc/build/node/bin/node",
