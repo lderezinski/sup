@@ -98,7 +98,7 @@ exec { "install-toolbox":
   environment => "HOME=/root",
 }
 
-Package { "im-notices":
+package { "im-notices":
   ensure => present,
   provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
@@ -117,7 +117,7 @@ exec { "install-jira-rest":
   cwd => "/usr/local/src",
 }
 
-Package { "new-ufds-users":
+package { "new-ufds-users":
   ensure => present,
   provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
