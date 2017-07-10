@@ -33,7 +33,7 @@ exec { "remove-nodejs":
 package { "nodejs":
   ensure => "0.10.48",
   require => Exec["remove-nodejs"],
-  before => [ Exec["install-manta"], Exec["install-sup-notify"], Exec["install-toolbox"], Exec["install-im-notices"] ],
+  before => [ Package["manta"], Package["sup-notify"], Exec["install-toolbox"], Package["im-notices"] ],
 }
 
 package { "p5-libwww":
@@ -49,17 +49,16 @@ exec { "known_hosts":
   unless => "/usr/bin/test -f /root/.ssh/known_hosts",
 }
 
-exec { "install-manta":
-  command => "/opt/local/bin/npm install -g manta",
-  unless  => "/usr/bin/test -f /opt/local/bin/mget",
-  environment => "HOME=/root"
+package { "manta":
+  ensure => present,
+  provider => "npm",
 }
 
-exec { "install-sup-notify":
+package { "sup-notify":
+  ensure => present,
+  provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
-  command => "/opt/local/bin/npm install -g git+ssh://git@github.com/joyent/sup-notify.git",
-  unless  => "/usr/bin/test -f /opt/local/bin/sup-notify",
-  environment => "HOME=/root",
+  source => "git+ssh://git@github.com/joyent/sup-notify.git",
 }
 
 exec { "install-sup-notify-templates":
@@ -99,11 +98,11 @@ exec { "install-toolbox":
   environment => "HOME=/root",
 }
 
-exec { "install-im-notices":
+Package { "im-notices":
+  ensure => present,
+  provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
-  command => "/opt/local/bin/npm install -g git+ssh://git@github.com/joyent/sup-im-notices.git",
-  unless  => "/usr/bin/test -f /opt/local/bin/im-notices",
-  environment => "HOME=/root",
+  source => "git+ssh://git@github.com/joyent/sup-im-notices.git",
 }
 
 exec { "install-rest-client":
@@ -118,11 +117,11 @@ exec { "install-jira-rest":
   cwd => "/usr/local/src",
 }
 
-exec { "install-new-ufds-users":
+Package { "new-ufds-users":
+  ensure => present,
+  provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
-  command => "/opt/local/bin/npm install -g git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
-  unless  => "/usr/bin/test -f /opt/local/bin/new-ufds-users",
-  environment => "HOME=/root",
+  source => "git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
 }
 
 exec { "link-node":
