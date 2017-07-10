@@ -13,6 +13,7 @@ To deploy:
 chmod 600 /root/.ssh/id_rsa
 echo nameserver 8.8.8.8 >/etc/resolv.conf
 pkgin -y in ruby21-puppet
+puppet module install puppet-nodejs --version 3.0.0
 puppet apply <(curl https://raw.githubusercontent.com/andrewh1978/sup/master/sup.pp)
 export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/id_rsa | cut -b 10-56)
 export MANTA_URL=https://us-east.manta.joyent.com
