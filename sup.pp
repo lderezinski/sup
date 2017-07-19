@@ -29,10 +29,6 @@ package { "gmake":
   before => Package["nodejs"],
 }
 
-package { "git":
-  ensure => installed,
-}
-
 exec { "remove-nodejs":
   command => "/opt/local/bin/pkgin -y rm nodejs",
   unless => "/usr/bin/test ! -f /opt/local/bin/node || /opt/local/bin/node --version | grep -q v0.10.48",
@@ -60,7 +56,7 @@ package { "manta":
 package { "sup-notify":
   ensure => present,
   provider => "npm",
-  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
+  require => [ Package["gcc49"], Package["gmake"] ],
   source => "git+ssh://git@github.com/joyent/sup-notify.git",
 }
 
@@ -79,14 +75,14 @@ exec { "update-sup-notify-templates":
 package { "toolbox":
   ensure => latest,
   provider => "npm",
-  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
+  require => [ Package["gcc49"], Package["gmake"] ],
   source => "git+ssh://git@github.com/joyent/sup-toolbox.git",
 }
 
 package { "im-notices":
   ensure => present,
   provider => "npm",
-  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
+  require => [ Package["gcc49"], Package["gmake"] ],
   source => "git+ssh://git@github.com/joyent/sup-im-notices.git",
 }
 
@@ -105,7 +101,7 @@ exec { "install-jira-rest":
 package { "new-ufds-users":
   ensure => present,
   provider => "npm",
-  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
+  require => [ Package["gcc49"], Package["gmake"] ],
   source => "git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
 }
 
