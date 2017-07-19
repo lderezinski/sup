@@ -55,7 +55,7 @@ package { "manta":
 }
 
 package { "sup-notify":
-  ensure => latest,
+  ensure => present,
   provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
   source => "git+ssh://git@github.com/joyent/sup-notify.git",
@@ -79,11 +79,11 @@ package { "toolbox":
   ensure => latest,
   provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
-  source => "git+ssh://git@github.com/travispaul/sup-toolbox.git",
+  source => "git+ssh://git@github.com/joyent/sup-toolbox.git",
 }
 
 package { "im-notices":
-  ensure => latest,
+  ensure => present,
   provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
   source => "git+ssh://git@github.com/joyent/sup-im-notices.git",
@@ -107,3 +107,4 @@ package { "new-ufds-users":
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
   source => "git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
 }
+
