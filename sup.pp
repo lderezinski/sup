@@ -1,9 +1,17 @@
-exec { "bash_profile":
-  command => "/opt/local/bin/curl https://raw.githubusercontent.com/andrewh1978/sup/master/.bash_profile >/root/.bash_profile",
+file { "/root/.bash_profile":
+  ensure => file,
+  owner => "root",
+  group => "root",
+  mode => "0600",
+  source => "/root/sup/.bash_profile",
 }
 
-exec { "/opt/local/etc/postfix/main.cf":
-  command => "/opt/local/bin/curl https://raw.githubusercontent.com/andrewh1978/sup/master/main.cf >/opt/local/etc/postfix/main.cf",
+file { "/opt/local/etc/postfix/main.cf":
+  ensure => file,
+  owner => "root",
+  group => "root",
+  mode => "0600",
+  source => "/root/sup/main.cf",
   before => Service["postfix"],
 }
 
@@ -33,7 +41,7 @@ exec { "remove-nodejs":
 package { "nodejs":
   ensure => "0.10.48",
   require => Exec["remove-nodejs"],
-  before => [ Package["manta"], Package["sup-notify"], Package["toolbox"], Package["im-notices"] ],
+  before => [ Package["manta"], Package["sup-notify"], Package["toolbox"], Package["im-notices"], Package["new-ufds-users"] ],
 }
 
 package { "p5-libwww":
