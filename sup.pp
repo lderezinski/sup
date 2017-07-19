@@ -55,7 +55,7 @@ package { "manta":
 }
 
 package { "sup-notify":
-  ensure => present,
+  ensure => latest,
   provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
   source => "git+ssh://git@github.com/joyent/sup-notify.git",
@@ -76,14 +76,14 @@ exec { "update-sup-notify-templates":
 }
 
 package { "toolbox":
-  ensure => present,
+  ensure => latest,
   provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
   source => "git+ssh://git@github.com/travispaul/sup-toolbox.git",
 }
 
 package { "im-notices":
-  ensure => present,
+  ensure => latest,
   provider => "npm",
   require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
   source => "git+ssh://git@github.com/joyent/sup-im-notices.git",
