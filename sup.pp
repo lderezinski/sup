@@ -44,11 +44,6 @@ package { "p5-JSON":
   ensure => installed,
 }
 
-exec { "known_hosts":
-  command => "/usr/bin/ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts",
-  unless => "/usr/bin/test -f /root/.ssh/known_hosts",
-}
-
 package { "manta":
   ensure => present,
   provider => "npm",
@@ -57,19 +52,17 @@ package { "manta":
 package { "sup-notify":
   ensure => present,
   provider => "npm",
-  require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
+  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
   source => "git+ssh://git@github.com/joyent/sup-notify.git",
 }
 
 exec { "install-sup-notify-templates":
-  require => Exec["known_hosts"],
   command => "/opt/local/bin/git clone git@github.com:joyent/triton-cloud-notification-templates.git",
   unless  => "/usr/bin/test -d /opt/local/lib/triton-cloud-notification-templates",
   cwd => "/opt/local/lib",
 }
 
 exec { "update-sup-notify-templates":
-  require => Exec["known_hosts"],
   command => "/opt/local/bin/git pull",
   unless  => "/usr/bin/test ! -d /opt/local/lib/triton-cloud-notification-templates",
   cwd => "/opt/local/lib/triton-cloud-notification-templates",
@@ -78,14 +71,14 @@ exec { "update-sup-notify-templates":
 package { "toolbox":
   ensure => latest,
   provider => "npm",
-  require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
+  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
   source => "git+ssh://git@github.com/joyent/sup-toolbox.git",
 }
 
 package { "im-notices":
   ensure => present,
   provider => "npm",
-  require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
+  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
   source => "git+ssh://git@github.com/joyent/sup-im-notices.git",
 }
 
@@ -104,7 +97,7 @@ exec { "install-jira-rest":
 package { "new-ufds-users":
   ensure => present,
   provider => "npm",
-  require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
+  require => [ Package["gcc49"], Package["gmake"], Package["git"] ],
   source => "git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
 }
 
