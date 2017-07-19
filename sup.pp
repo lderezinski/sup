@@ -33,7 +33,7 @@ exec { "remove-nodejs":
 package { "nodejs":
   ensure => "0.10.48",
   require => Exec["remove-nodejs"],
-  before => [ Package["manta"], Package["sup-notify"], Exec["install-toolbox"], Package["im-notices"] ],
+  before => [ Package["manta"], Package["sup-notify"], Package["toolbox"], Package["im-notices"] ],
 }
 
 package { "p5-libwww":
@@ -75,27 +75,11 @@ exec { "update-sup-notify-templates":
   cwd => "/opt/local/lib/triton-cloud-notification-templates",
 }
 
-exec { "download-toolbox":
-  require => Package["git"],
-  command => "/opt/local/bin/git clone git@github.com:joyent/sup-toolbox.git",
-  unless => "/usr/bin/test -d /root/sup-toolbox",
-  cwd => "/root",
-  notify => Exec["install-toolbox"],
-}
-
-exec { "update-toolbox":
-  require => Package["git"],
-  command => "/opt/local/bin/git pull",
-  unless => "/usr/bin/test ! -d /root/sup-toolbox",
-  cwd => "/root/sup-toolbox",
-  notify => Exec["install-toolbox"],
-}
-
-exec { "install-toolbox":
-  refreshonly => true,
-  command => "/opt/local/bin/npm install",
-  cwd => "/root/sup-toolbox",
-  environment => "HOME=/root",
+package { "toolbox":
+  ensure => latest,
+  provider => "npm",
+  require => [ Package["gcc49"], Package["gmake"], Package["git"], Exec["known_hosts"] ],
+  source => "git+ssh://git@github.com/joyent/sup-toolbox.git",
 }
 
 package { "im-notices":
@@ -124,14 +108,3 @@ package { "new-ufds-users":
   source => "git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
 }
 
-exec { "link-node":
-  require => Exec["download-toolbox"],
-  command => "/opt/local/bin/mkdir -p /root/sup-toolbox/node_modules/sdc/build/node/bin && /opt/local/bin/ln -s /opt/local/bin/node /root/sup-toolbox/node_modules/sdc/build/node/bin/node",
-}
-
-file { "toolbox":
-  path => "/root/toolbox",
-  ensure => "link",
-  target => "/root/sup-toolbox",
-  require => Exec["download-toolbox"],
-}
