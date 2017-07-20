@@ -16,6 +16,7 @@ pkgin -y in ruby21-puppet git
 ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 git clone git@github.com:andrewh1978/sup.git
 puppet module install puppet-nodejs --version 3.0.0
+puppet module install jamesmcdonald-cpanm --version 0.9.3
 puppet apply /root/sup/sup.pp
 export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/id_rsa | cut -b 10-56)
 export MANTA_URL=https://us-east.manta.joyent.com

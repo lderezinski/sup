@@ -48,6 +48,11 @@ package { "p5-JSON":
   ensure => installed,
 }
 
+package { "p5-App-cpanminus":
+  require => Package["gmake"],
+  ensure => installed,
+}
+
 package { "manta":
   ensure => present,
   provider => "npm",
@@ -86,16 +91,9 @@ package { "im-notices":
   source => "git+ssh://git@github.com/joyent/sup-im-notices.git",
 }
 
-exec { "install-rest-client":
-  require => Package["gmake"],
-  command => "/opt/local/bin/curl http://www.cpan.org/authors/id/K/KK/KKANE/REST-Client-273.tar.gz | /opt/local/bin/tar xzf - && cd REST-Client-273 && /opt/local/bin/perl Makefile.PL && /opt/local/bin/make install",
-  cwd => "/usr/local/src",
-}
-
-exec { "install-jira-rest":
-  require => Exec["install-rest-client"],
-  command => "/opt/local/bin/curl http://www.cpan.org/authors/id/G/GN/GNUSTAVO/JIRA-REST-0.017.tar.gz | /opt/local/bin/tar xzf - && cd JIRA-REST-0.017 && /opt/local/bin/perl Makefile.PL && /opt/local/bin/make install",
-  cwd => "/usr/local/src",
+cpanm { "JIRA::REST":
+  require => Package["p5-App-cpanminus"],
+  ensure => installed,
 }
 
 package { "new-ufds-users":
