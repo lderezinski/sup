@@ -2,7 +2,7 @@ It is not possible to provision an instance on a network that a user does not ha
 
 To deploy:
 
-1. Provision a base-64 16.3.1 instance owned by admin, with an interface on the admin network.
+1. Provision a base-64 17.1.0 instance owned by admin, with an interface on the admin network.
 2. Change ownership of the instance to joyentsup.
 3. Reboot and SSH as root.
 4. Copy your private key to `/root/.ssh/id_rsa`.
