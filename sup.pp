@@ -37,7 +37,7 @@ exec { "remove-nodejs":
 package { "nodejs":
   ensure => "0.10.48",
   require => Exec["remove-nodejs"],
-  before => [ Package["manta"], Package["sup-notify"], Package["toolbox"], Package["im-notices"], Package["new-ufds-users"] ],
+  before => [ Package["manta"], Exec["install-sup-notify"], Exec["install-toolbox"], Exec["install-im-notices"], Exec["install-new-ufds-users"] ],
 }
 
 package { "p5-libwww":
@@ -58,11 +58,9 @@ package { "manta":
   provider => "npm",
 }
 
-package { "sup-notify":
-  ensure => present,
-  provider => "npm",
+exec { "install-sup-notify":
   require => [ Package["gcc49"], Package["gmake"] ],
-  source => "git+ssh://git@github.com/joyent/sup-notify.git",
+  command => "/root/sup/npm_from_git.sh git+ssh://git@github.com/joyent/sup-notify.git",
 }
 
 exec { "install-sup-notify-templates":
@@ -77,18 +75,14 @@ exec { "update-sup-notify-templates":
   cwd => "/opt/local/lib/triton-cloud-notification-templates",
 }
 
-package { "toolbox":
-  ensure => latest,
-  provider => "npm",
+exec { "install-toolbox":
   require => [ Package["gcc49"], Package["gmake"] ],
-  source => "git+ssh://git@github.com/joyent/sup-toolbox.git",
+  command => "/root/sup/npm_from_git.sh git+ssh://git@github.com/joyent/sup-toolbox.git",
 }
 
-package { "im-notices":
-  ensure => present,
-  provider => "npm",
+exec { "install-im-notices":
   require => [ Package["gcc49"], Package["gmake"] ],
-  source => "git+ssh://git@github.com/joyent/sup-im-notices.git",
+  command => "/root/sup/npm_from_git.sh git+ssh://git@github.com/joyent/sup-im-notices.git",
 }
 
 cpanm { "JIRA::REST":
@@ -96,10 +90,8 @@ cpanm { "JIRA::REST":
   ensure => installed,
 }
 
-package { "new-ufds-users":
-  ensure => present,
-  provider => "npm",
+exec { "install-new-ufds-users":
   require => [ Package["gcc49"], Package["gmake"] ],
-  source => "git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
+  command => "/root/sup/npm_from_git.sh git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
 }
 
