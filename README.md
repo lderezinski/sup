@@ -18,12 +18,5 @@ git clone git@github.com:andrewh1978/sup.git
 puppet module install puppet-nodejs --version 3.0.0
 puppet module install jamesmcdonald-cpanm --version 0.9.3
 puppet apply /root/sup/sup.pp
-export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/id_rsa | cut -b 10-56)
-export MANTA_URL=https://us-east.manta.joyent.com
-export MANTA_USER=<Manta user ID>
-mget /joyentsup/stor/sup/profile.$DC >/root/.profile
-mget /joyentsup/stor/sup/sdc-config.json >/opt/local/lib/toolbox/node_modules/sdc/etc/config.json
-mget /joyentsup/stor/sup/$DC.json >/opt/local/lib/node_modules/sup-notify/etc/dc.json
-mget /joyentsup/stor/sup/im-notices.json >/opt/local/lib/node_modules/im-notices/etc/config.json
-rm -f /root/.ssh/id_rsa
+puppet apply /root/sup/$DC.pp
 ```
