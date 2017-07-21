@@ -1,5 +1,6 @@
 #/usr/bin/bash
 
+export HOME=/root
 WORKDIR=/root/git
 REPO=$1
 TARGET=/opt/local/lib/node_modules
@@ -14,8 +15,6 @@ fi
 
 name=$(json name < $WORKDIR/$reponame/package.json)
 newversion=$(json version < $WORKDIR/$reponame/package.json)
-oldversion=$(json version < $TARGET/$name/package.json)
+[ -f $TARGET/$name/package.json ] && oldversion=$(json version < $TARGET/$name/package.json)
 
-if [ "$newversion" \> "$oldversion" ]; then
-	npm install $WORKDIR/$reponame
-fi
+[ "$newversion" \> "$oldversion" ] && npm install -g $WORKDIR/$reponame
