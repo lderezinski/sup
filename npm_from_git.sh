@@ -18,3 +18,4 @@ newversion=$(json version < $WORKDIR/$reponame/package.json)
 [ -f $TARGET/$name/package.json ] && oldversion=$(json version < $TARGET/$name/package.json)
 
 [ "$newversion" \> "$oldversion" ] && npm install -g $WORKDIR/$reponame
+exit 0
