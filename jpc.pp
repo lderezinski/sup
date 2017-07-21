@@ -3,7 +3,7 @@ exec { "mget-profile":
 }
 
 exec { "mget-sdc-config":
-  command => "/root/sup/mget_if_changed.sh /joyentsup/stor/sup/sdc-config.json /opt/local/lib/toolbox/node_modules/sdc/etc/config.json",
+  command => "/root/sup/mget_if_changed.sh /joyentsup/stor/sup/sdc-config.json /opt/local/lib/node_modules/toolbox/node_modules/sdc/etc/config.json",
 }
 
 exec { "mget-sup-notify-dc":
