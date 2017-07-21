@@ -92,6 +92,6 @@ cpanm { "JIRA::REST":
 
 exec { "install-new-ufds-users":
   require => [ Package["gcc49"], Package["gmake"] ],
-  command => "/root/sup/npm_from_git.sh git+ssh://git@github.com:joyent/sup-new-ufds-users.git",
+  command => "/root/sup/npm_from_git.sh git+ssh://git@github.com/joyent/sup-new-ufds-users.git",
 }
 
