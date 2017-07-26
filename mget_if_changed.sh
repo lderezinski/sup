@@ -1,9 +1,10 @@
 #!/usr/bin/bash
 
 export HOME=/root
-export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/id_rsa | cut -b 10-56)
+export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/sup_manta.key | cut -b 10-56)
 export MANTA_URL=https://us-east.manta.joyent.com
-export MANTA_USER=andrew.hill
+export MANTA_USER=joyentsup
+export MANTA_SUBUSER=sup_manta
 
 OBJ=$1
 FILE=$2
