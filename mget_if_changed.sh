@@ -5,6 +5,7 @@ export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/sup_manta.key | cut -b 
 export MANTA_URL=https://us-east.manta.joyent.com
 export MANTA_USER=joyentsup
 export MANTA_SUBUSER=sup_manta
+export MANTA_ROLE=sup_manta
 
 OBJ=$1
 FILE=$2
