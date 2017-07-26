@@ -20,5 +20,7 @@ puppet module install jamesmcdonald-cpanm --version 0.9.3
 puppet apply /root/sup/sup.pp
 mget --account=<Manta user ID> --url=https://us-east.manta.joyent.com --keyId=$(ssh-keygen -E md5 -l -f /root/.ssh/id_rsa | cut -b 10-56) /joyentsup/stor/sup/sup_manta.key >/root/.ssh/sup_manta.key
 rm -f /root/.ssh/id_rsa
+chmod 600 /root/.ssh/sup_manta.key
+ssh-keygen -y -f /root/.ssh/sup_manta.key >/root/.ssh/sup_manta.key.pub
 puppet apply /root/sup/$DC.pp
 ```
