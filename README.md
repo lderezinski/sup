@@ -7,7 +7,6 @@ To deploy:
 3. Reboot and SSH as root.
 4. Copy your private key to `/root/.ssh/id_rsa`.
 5. Ensure your public key is in the joyentsup account on Triton Cloud.
-6. Run one of `export DC=jpc` or `export DC=spc`.
 
 ```
 chmod 600 /root/.ssh/id_rsa
@@ -22,5 +21,16 @@ mget --account=<Manta user ID> --url=https://us-east.manta.joyent.com --keyId=$(
 rm -f /root/.ssh/id_rsa
 chmod 600 /root/.ssh/sup_manta.key
 ssh-keygen -y -f /root/.ssh/sup_manta.key >/root/.ssh/sup_manta.key.pub
-puppet apply /root/sup/$DC.pp
+```
+
+Run one of:
+
+```
+puppet apply /root/sup/spc.pp
+```
+
+or
+
+```
+puppet apply /root/sup/jpc.pp
 ```

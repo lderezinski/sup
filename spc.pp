@@ -13,3 +13,9 @@ exec { "mget-sup-notify-dc":
 exec { "mget-im-notices":
   command => "/root/sup/mget_if_changed.sh /joyentsup/stor/sup/im-notices.json /opt/local/lib/node_modules/im-notices/etc/config.json",
 }
+
+cron { "reapply-spc":
+  command => "/opt/local/bin/git apply /root/sup/spc.pp",
+  user => "root",
+  minute => 45,
+}

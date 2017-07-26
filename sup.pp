@@ -95,8 +95,14 @@ exec { "install-new-ufds-users":
   command => "/root/sup/npm_from_git.sh git+ssh://git@github.com/joyent/sup-new-ufds-users.git",
 }
 
-cron{ "refresh-from-git":
+cron { "refresh-from-git":
   command => "cd /root/sup ; /opt/local/bin/git pull",
   user => "root",
   minute => 0,
+}
+
+cron { "reapply-sup":
+  command => "/opt/local/bin/git apply /root/sup/sup.pp",
+  user => "root",
+  minute => 30,
 }
