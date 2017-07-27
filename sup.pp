@@ -15,6 +15,20 @@ file { "/opt/local/etc/postfix/main.cf":
   before => Service["postfix"],
 }
 
+file { "/opt/local/lib/node_modules/sup-notify/etc":
+  ensure => directory,
+  owner => "root",
+  group => "root",
+  mode => "0644",
+}
+
+file { "/opt/local/lib/node_modules/im-notices/etc":
+  ensure => directory,
+  owner => "root",
+  group => "root",
+  mode => "0644",
+}
+
 service { "postfix":
   ensure => running,
 }

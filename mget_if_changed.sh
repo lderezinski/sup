@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+set -x
 
 export HOME=/root
 export MANTA_KEY_ID=$(ssh-keygen -E md5 -l -f /root/.ssh/sup_manta.key | cut -b 10-56)
