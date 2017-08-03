@@ -20,7 +20,7 @@ file { "/opt/local/lib/node_modules/sup-notify/etc":
   owner => "root",
   group => "root",
   mode => "0644",
-  require => Exec["install-im-notices"],
+  require => Exec["install-sup-notify"],
 }
 
 file { "/opt/local/lib/node_modules/im-notices/etc":
@@ -28,7 +28,7 @@ file { "/opt/local/lib/node_modules/im-notices/etc":
   owner => "root",
   group => "root",
   mode => "0644",
-  require => Exec["install-sup-notify"],
+  require => Exec["install-im-notices"],
 }
 
 service { "postfix":
