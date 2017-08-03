@@ -15,7 +15,7 @@ exec { "mget-im-notices":
 }
 
 cron { "reapply-jpc":
-  command => "/opt/local/bin/git apply /root/sup/jpc.pp",
+  command => "/opt/local/bin/puppet apply /root/sup/jpc.pp",
   user => "root",
   minute => 45,
 }

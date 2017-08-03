@@ -118,7 +118,7 @@ cron { "refresh-from-git":
 }
 
 cron { "reapply-sup":
-  command => "/opt/local/bin/git apply /root/sup/sup.pp",
+  command => "/opt/local/bin/puppet apply /root/sup/sup.pp",
   user => "root",
   minute => 30,
 }
