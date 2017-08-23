@@ -1,4 +1,4 @@
-It is not possible to provision an instance on a network that a user does not have permission to use. However, it is possible to change the ownership of an instance to any user. Since we need an interface on the admin network, we need to provision it to be owned by the admin user, then moved to joyentsup. We also need to copy the private SSH key temporarily in order to access some files on Manta that contain information that cannot live on a public repo. You can safely ignore the dtrace errors when you run mget, so long as the file is retrieved and generated.
+It is not possible to provision an instance on a network that a user does not have permission to use. However, it is possible to change the ownership of an instance to any user. Since we need an interface on the admin network, we need to provision it to be owned by the admin user, then moved to joyentsup. We also need to use a personal private SSH key to fetch the sup private SSH key from Manta. This key is used to fetch private Github repos and configs from Manta. Dtrace errors when you run mget can safely be ignored, so long as the file is retrieved and generated.
 
 To deploy:
 

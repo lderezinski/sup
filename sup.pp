@@ -1,3 +1,11 @@
+file { "/root/.ssh/config":
+  ensure => file,
+  owner => "root",
+  group => "root",
+  mode => "0600",
+  source => "/root/sup/ssh-config",
+}
+
 file { "/root/.bash_profile":
   ensure => file,
   owner => "root",
@@ -80,7 +88,7 @@ exec { "install-sup-notify":
 }
 
 exec { "install-sup-notify-templates":
-  command => "/opt/local/bin/git clone https://github.com/joyent/triton-cloud-notification-templates.git",
+  command => "/opt/local/bin/git clone git+ssh://git@github.com/joyent/triton-cloud-notification-templates.git",
   unless  => "/usr/bin/test -d /opt/local/lib/triton-cloud-notification-templates",
   cwd => "/opt/local/lib",
 }
