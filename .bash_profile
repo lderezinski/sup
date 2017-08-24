@@ -1,6 +1,6 @@
 [ -f ~/.profile ] && source ~/.profile
 [ -f ~/.bashrc ] && source ~/.bashrc
-alias "tb=source ~/toolbox/toolbox"
+alias "tb=source /opt/local/lib/node_modules/toolbox/toolbox"
 # iTerm Badge
 printf "\e]1337;SetBadgeFormat=%s\a" \
   $(echo -n "\(session.name)" | base64)
