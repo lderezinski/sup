@@ -4,8 +4,8 @@ To deploy:
 
 1. Provision a base-64 17.2.0 instance owned by admin, with an interface on the admin network.
 2. Change ownership of the instance to joyentsup.
-3. Reboot and SSH as root.
-4. Ensure your public key is in the joyentsup account on Triton Cloud.
+3. Ensure your public key is in the joyentsup account on Triton Cloud.
+4. Reboot and SSH as root.
 5. Run `./get_sign /joyentsup/stor/sup/sup_manta.key 1H` on your laptop.
 6. Paste from the clipboard into the new instance.
 
