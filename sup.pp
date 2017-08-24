@@ -102,6 +102,7 @@ exec { "update-sup-notify-templates":
 exec { "install-toolbox":
   require => [ Package["gcc49"], Package["gmake"] ],
   command => "/root/sup/npm_from_git.sh https://github.com/joyent/sup-toolbox.git",
+  timeout => 600,
 }
 
 exec { "install-im-notices":
