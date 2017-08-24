@@ -2,7 +2,7 @@ It is not possible to provision an instance on a network that a user does not ha
 
 To deploy:
 
-1. Provision a base-64 17.2.0 instance owned by admin, with an interface on the admin network.
+1. Provision a base-64 17.2.0 instance owned by admin, with an interface on the admin network, using the g4-highcpu-8G package.
 2. Change ownership of the instance to joyentsup.
 3. Ensure your public key is in the joyentsup account on Triton Cloud.
 4. Reboot and SSH as root.
