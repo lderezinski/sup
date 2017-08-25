@@ -6,9 +6,10 @@ To deploy:
 2. Change ownership of the instance to joyentsup.
 3. Ensure your public key is in the joyentsup account on Triton Cloud.
 4. Reboot and SSH as root.
-5. Run `echo nameserver 8.8.8.8 >/etc/resolv.conf` on the new instance.
-6. Run `./get_sign /joyentsup/stor/sup/sup_manta.key 1H` on your laptop.
-7. Paste from the clipboard into the new instance.
+5. Run `sm-set-hostname <hostname>` and reboot.
+6. Run `echo nameserver 8.8.8.8 >/etc/resolv.conf` on the new instance.
+7. Run `./get_sign /joyentsup/stor/sup/sup_manta.key 1H` on your laptop.
+8. Paste from the clipboard into the new instance.
 
 ```
 mv /root/sup_manta.key /root/.ssh/sup_manta.key
