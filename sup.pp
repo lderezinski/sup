@@ -82,6 +82,10 @@ package { "manta":
   provider => "npm",
 }
 
+package { "mosh":
+  ensure => present,
+}
+
 exec { "install-sup-notify":
   require => [ Package["gcc49"], Package["gmake"] ],
   command => "/root/sup/npm_from_git.sh https://github.com/joyent/sup-notify.git",
