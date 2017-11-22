@@ -34,3 +34,9 @@ or
 ```
 puppet apply /root/sup/jpc.pp
 ```
+
+or 
+
+```
+puppet apply /root/sup/bop.pp
+```
