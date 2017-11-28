@@ -98,7 +98,7 @@ exec { "mget-testmain.sh":
 exec { "mget-thothRun":
   command => "/root/sup/mget_if_changed.sh /linda/stor/BOP/thothRun /opt/BOP/thothRun",
 }
-exec { "install-manta-hk:
+exec { "install-manta-hk":
   command => "cd /opt && /opt/local/bin/git clone git@github.com:joyent/manta-hk.git && cd /opt/manta-hk && npm install",
   cwd => "/opt/BOP",
 }
