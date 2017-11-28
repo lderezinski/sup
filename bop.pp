@@ -7,6 +7,27 @@ file { "/opt/BOP":
 
 }
 
+package { "gcc49":
+  ensure => installed,
+  before => Package["nodejs"],
+}
+
+package { "gmake":
+  ensure => installed,
+  before => Package["nodejs"],
+}
+
+exec { "remove-nodejs":
+  command => "/opt/local/bin/pkgin -y rm nodejs",
+  unless => "/usr/bin/test ! -f /opt/local/bin/node || /opt/local/bin/node --version | grep -q v0.10.48",
+}
+
+package { "nodejs":
+  ensure => "0.10.48",
+  require => Exec["remove-nodejs"],
+  before => [ Package["manta"], Exec["install-manta-hk"]],
+}
+
 exec { "mget-BOP-019":
   command => "/root/sup/mget_if_changed.sh /joyentsup/stor/BOP/BOP-019 /opt/BOP/BOP-019",
 }
@@ -90,6 +111,7 @@ exec { "mget-thothRun":
   command => "/root/sup/mget_if_changed.sh /joyentsup/stor/BOP/thothRun /opt/BOP/thothRun",
 }
 exec { "install-manta-hk":
+  require => [ Package["gcc49"], Package["gmake"] ],
   command => "/usr/bin/cd /opt && /opt/local/bin/git clone git@github.com:joyent/manta-hk.git && /usr/bin/cd /opt/manta-hk && npm install",
   cwd => "/opt/BOP",
 }
