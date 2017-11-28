@@ -117,7 +117,7 @@ exec { "mget-thothRun":
 }
 exec { "install-manta-hk":
   require => [ Package["gcc49"], Package["gmake"] ],
-  command => "/root/sub/git-clone-pull.sh git@github.com:joyent/manta-hk.git",
+  command => "/root/sup/git-clone-pull.sh git@github.com:joyent/manta-hk.git",
 }
 
 
