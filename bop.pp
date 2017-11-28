@@ -48,6 +48,14 @@ package { "nodejs":
   before => [ Package["manta"], Exec["install-manta-hk"]],
 }
 
+file { "//opt/BOP/BOP-019":
+  ensure => file,
+  owner => "root",
+  group => "root",
+  mode => "0755",
+  before => Exec["mget-BOP-019"],
+
+}
 exec { "mget-BOP-019":
   command => "/root/sup/mget_if_changed.sh /joyentsup/stor/BOP/BOP-019 /opt/BOP/BOP-019",
 }

@@ -9,6 +9,8 @@ if [ -d "$WORKDIR/$reponame" ]; then
         (cd $WORKDIR/$reponame ; git pull)
 else
         git clone $1 "$WORKDIR/$reponame"
+		cd $WORKDIR/$reponame && npm install 
+
 fi
 
 name=$(json name < $WORKDIR/$reponame/package.json)
