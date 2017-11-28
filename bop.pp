@@ -117,15 +117,7 @@ exec { "mget-thothRun":
 }
 exec { "install-manta-hk":
   require => [ Package["gcc49"], Package["gmake"] ],
-  command => "/usr/bin/cd /opt && /opt/local/bin/git clone git@github.com:joyent/manta-hk.git && /usr/bin/cd /opt/manta-hk && /opt/local/bin/npm install",
-  onlyif => '/usr/bin/test ! -e /opt/manta-hk/README.md',
-}
-
-
-exec { "pull-manta-hk":
-  require => [ Package["gcc49"], Package["gmake"] ],
-  command => "/usr/bin/cd /opt/manta-hk && /opt/local/bin/git pull  && /opt/local/bin/npm install",
-  onlyif => '/usr/bin/test -e /opt/manta-hk/README.md',
+  command => "/root/sub/git-clone-pull.sh git@github.com:joyent/manta-hk.git",
 }
 
 
