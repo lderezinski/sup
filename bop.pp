@@ -7,6 +7,15 @@ file { "/opt/BOP":
 
 }
 
+file { "/root/.ssh/config":
+  ensure => file,
+  owner => "root",
+  group => "root",
+  mode => "0600",
+  source => "/root/sup/ssh-config",
+}
+
+
 package { "gcc49":
   ensure => installed,
   before => Package["nodejs"],
