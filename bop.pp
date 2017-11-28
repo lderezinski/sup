@@ -10,11 +10,6 @@ class directories {
 }
 
 
-exec { "install-manta-hk:
-  command => "/opt/local/bin/git clone git@github.com:joyent/manta-hk.git && cd /opt/BOP/manta-hk && npm install",
-  cwd => "/opt/BOP",
-}
-
 exec { "mget-BOP-019":
   command => "/root/sup/mget_if_changed.sh /linda/stor/BOP/BOP-019 /opt/BOP/BOP-019",
 }
@@ -101,6 +96,11 @@ exec { "mget-testmain.sh":
 exec { "mget-thothRun":
   command => "/root/sup/mget_if_changed.sh /linda/stor/BOP/thothRun /opt/BOP/thothRun",
 }
+exec { "install-manta-hk:
+  command => "/opt/local/bin/git clone git@github.com:joyent/manta-hk.git && cd /opt/BOP/manta-hk && npm install",
+  cwd => "/opt/BOP",
+}
+
 
 
 cron { "reapply-bop":
