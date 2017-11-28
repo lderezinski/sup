@@ -4,7 +4,7 @@ file { "/opt/BOP":
   owner => "root",
   group => "root",
   mode => "0644",
-  require => Exec["mget-BOP-019"],
+
 }
 
 exec { "mget-BOP-019":
