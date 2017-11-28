@@ -1,13 +1,4 @@
-class directories {
 
-  # create a directory
-  file { '/opt/BOP':
-    ensure => 'directory',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-  }
-}
 file { "/opt/BOP":
   ensure => directory,
   owner => "root",
