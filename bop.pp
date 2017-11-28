@@ -5,18 +5,20 @@ class directories {
     ensure => 'directory',
     owner  => 'root',
     group  => 'root',
-    mode   => '0750',
+    mode   => '0644',
   }
 }
-
+file { "/opt/BOP":
+  ensure => directory,
+  owner => "root",
+  group => "root",
+  mode => "0644",
+  require => Exec["mget-BOP-019"],
+}
 
 exec { "mget-BOP-019":
   command => "/root/sup/mget_if_changed.sh /linda/stor/BOP/BOP-019 /opt/BOP/BOP-019",
 }
-
-
-
-
 
 exec { "mget-adminRun":
   command => "/root/sup/mget_if_changed.sh /linda/stor/BOP/adminRun /opt/BOP/adminRun",
