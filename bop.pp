@@ -31,6 +31,12 @@ package { "manta":
   provider => "npm",
 }
 
+package { "bunyan":
+  ensure => present,
+  provider => "npm",
+}
+
+
 exec { "remove-nodejs":
   command => "/opt/local/bin/pkgin -y rm nodejs",
   unless => "/usr/bin/test ! -f /opt/local/bin/node || /opt/local/bin/node --version | grep -q v0.10.48",
