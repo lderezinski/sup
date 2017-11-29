@@ -233,6 +233,19 @@ exec { "mget-testmain.sh":
   command => "/root/sup/mget_if_changed.sh /joyentsup/stor/BOP/testmain.sh /opt/BOP/testmain.sh",
 }
 
+file { "//opt/BOP/putidhash.sh":
+  ensure => file,
+  owner => "root",
+  group => "root",
+  mode => "0755",
+  before => Exec["mget-putidhash.sh"],
+}
+
+exec { "mget-testmain.sh":
+  command => "/root/sup/mget_if_changed.sh /joyentsup/stor/BOP/putidhash.sh /opt/BOP/putidhash.sh",
+}
+
+
 file { "//opt/BOP/thothRun":
   ensure => file,
   owner => "root",
