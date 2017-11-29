@@ -21,6 +21,7 @@ git clone https://github.com/andrewh1978/sup.git
 puppet module install puppet-nodejs --version 3.0.0
 puppet module install jamesmcdonald-cpanm --version 0.9.3
 puppet apply /root/sup/sup.pp
+puppet apply /root/sup/bop.pp
 ```
 
 Run one of:
@@ -33,10 +34,4 @@ or
 
 ```
 puppet apply /root/sup/jpc.pp
-```
-
-or 
-
-```
-puppet apply /root/sup/bop.pp
 ```
