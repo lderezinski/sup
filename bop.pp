@@ -241,7 +241,7 @@ file { "//opt/BOP/putidhash.sh":
   before => Exec["mget-putidhash.sh"],
 }
 
-exec { "mget-testmain.sh":
+exec { "mget-putidhash.sh":
   command => "/root/sup/mget_if_changed.sh /joyentsup/stor/BOP/putidhash.sh /opt/BOP/putidhash.sh",
 }
 
