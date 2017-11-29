@@ -225,11 +225,20 @@ file { "/opt/BOP/thothRun":
 exec { "mget-thothRun":
   command => "/root/sup/mget_if_changed.sh /joyentsup/stor/BOP/thothRun /opt/BOP/thothRun",
 }
-exec { "install-manta-hk":
+
+exec { "git-clone-manta-hk":
   require => [ Package["gcc49"], Package["gmake"] ],
-  command => "/root/sup/git-clone-pull.sh git@github.com:joyent/manta-hk.git",
+  command => "/opt/local/bin/git clone git@github.com:joyent/manta-hk.git"
+  onlyif => "/opt/local/bin/test ! -d /opt/manta-hk"
+  cwd => "/opt",
+  refreshonly => true,
 }
 
+exec { "git-clone-manta-hk":
+  require => [ Exec["git-clone-manta-hk"] ],
+  command => "/opt/local/bin/git pull && /opt/local/bin/npm install"
+  cwd => "/opt/manta-hk",
+}
 
 
 cron { "reapply-bop":
