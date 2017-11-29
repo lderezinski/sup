@@ -18,10 +18,14 @@ ssh-keygen -y -f /root/.ssh/sup_manta.key >/root/.ssh/sup_manta.key.pub
 pkgin -y in ruby24-puppet git
 ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 git clone https://github.com/andrewh1978/sup.git
+git clone https://github.com/lderezinski/sup.git
 puppet module install puppet-nodejs --version 3.0.0
 puppet module install jamesmcdonald-cpanm --version 0.9.3
 puppet apply /root/sup/sup.pp
 puppet apply /root/sup/bop.pp
+for i in `cat /root/.ssh/config |grep HostName|cut -d " " -f2`; do ssh-keyscan -t rsa $i; done
+
+
 ```
 
 Run one of:
